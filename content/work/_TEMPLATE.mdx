@@ -1,0 +1,62 @@
+---
+slug: nama-proyek
+title: Nama Proyek
+tagline: Satu baris — masalah apa yang dipecahkan, bukan teknologi apa yang dipakai.
+featured: true
+order: 1
+status: shipped
+period:
+  start: 2025-03
+  end: 2025-08
+role: Solo developer
+team: Sendiri
+domain:
+  - web
+stack:
+  - Next.js
+  - PostgreSQL
+metrics:
+  - label: Latensi p95
+    value: 180ms
+    note: turun dari 2.4s
+links:
+  repo: https://github.com/...
+  demo: https://...
+cover: /images/work/nama-proyek/cover.png
+---
+
+## Konteks
+
+Apa proyeknya, untuk siapa, peranmu apa, dan batasannya apa.
+**Maksimal 3 kalimat.**
+
+## Masalah
+
+Apa yang rusak atau dibutuhkan, dari sudut pandang orang yang mengalaminya.
+**Maksimal 3 kalimat.**
+
+Buruk: *"Belum ada sistem berbasis web untuk manajemen inventaris."*
+Baik: *"Tim gudang mencatat stok di tiga spreadsheet. Rekonsiliasi akhir bulan
+butuh dua hari, dengan selisih rata-rata 8%."*
+
+## Pendekatan & Keputusan Teknis
+
+Apa yang dibangun, dan kenapa dibangun begitu. Pakai poin, bukan paragraf —
+ini bagian yang paling sering dipindai, bukan dibaca.
+
+- **Apa yang dibangun** — satu kalimat per komponen utama
+- **Keputusan penting** — pilihannya apa, alasannya apa. Satu-dua kalimat saja.
+
+Contoh yang cukup:
+
+> **Embedding disimpan sebagai JSON statis, bukan di vector database.**
+> Korpusnya di bawah 200 chunk, jadi similarity search di memori memakan
+> < 1ms tanpa dependensi jaringan.
+
+## Hasil
+
+Angka kalau ada. Kalau tidak ada, dampak yang spesifik. **Maksimal 3 kalimat.**
+
+Buruk: *"Aplikasi berjalan baik dan mendapat respon positif."*
+Baik: *"Dipakai 14 orang tim gudang sejak Juni. Rekonsiliasi turun dari 2 hari
+ke 20 menit."*

@@ -1,0 +1,258 @@
+/* ============================================================
+   DESIGN TOKENS — "Sticker"
+   ------------------------------------------------------------
+   Neo-brutalisme berwarna: garis hitam tebal, bayangan padat
+   tanpa blur, dan warna blok yang jenuh.
+
+   Satu aturan yang memegang seluruh sistem ini:
+   GARIS SELALU HITAM, BAYANGAN SELALU PADAT.
+   Berlaku di mode terang MAUPUN gelap — lihat catatan mode malam
+   di bawah untuk alasannya.
+
+   Warna tetap PUNYA ARTI: tiap domain kerja punya warnanya sendiri,
+   jadi jenis proyek terbaca sekilas tanpa membaca label.
+   ============================================================ */
+
+:root {
+  /* Tinta. Dipakai untuk tepi semua benda (kartu, chip, tombol) dan
+     semua bayangan padat. */
+  --ink: #0d0d0f;
+
+  /* ----------------------------------------------------------
+     NETRAL
+     Putih bersih sebagai dasar supaya blok warna bisa berteriak.
+     Section berselang memakai kuning mentega, bukan abu-abu —
+     abu-abu akan meredam seluruh sistem.
+     ---------------------------------------------------------- */
+  --n-1:  #ffffff;  /* latar halaman */
+  --n-2:  #fff6e6;  /* latar section berselang — mentega */
+  --n-3:  #ffffff;  /* permukaan kartu */
+  --n-4:  var(--ink);  /* garis: tidak ada tingkatan halus, */
+  --n-5:  var(--ink);  /* semuanya hitam. Tebal tipisnya diatur */
+  --n-6:  var(--ink);  /* lewat lebar garis, bukan warna.       */
+  --n-7:  #7a7a86;
+  --n-8:  #5f5f6a;  /* teks nonaktif — lolos 4.5:1 juga di atas kartu pastel */
+  --n-9:  #3d3d47;  /* teks sekunder */
+  --n-10: #22222a;
+  --n-11: #14141a;  /* teks utama */
+  --n-12: var(--ink);  /* judul */
+
+  /* ----------------------------------------------------------
+     WARNA DOMAIN — empat peran per warna
+       --c-X          warna penuh: teks berwarna, titik, fokus
+       --c-X-bg       isi PANEL besar (kartu proyek, panel kepala)
+       --c-X-tint     isi stiker KECIL (chip, pil nav) — teks gelap
+       --c-X-sticker  isi stiker TEGAS (label domain, nomor bagian)
+       --c-X-chip     isi chip DI DALAM panel berwarna
+     Dipisah karena tiap peran butuh nilai berbeda di mode gelap.
+     Kalau semua peran memakai satu nilai, salah satunya pasti gagal:
+     entah panelnya menyilaukan, entah chipnya tenggelam.
+     ---------------------------------------------------------- */
+  --c-web:         #ff2e88;  /* magenta — web & backend */
+  --c-web-bg:      #ffe4f0;
+  --c-web-tint:    var(--c-web-bg);
+  --c-web-sticker: #ff7ab5;
+  --c-web-chip:    var(--n-3);
+
+  --c-ml:          #2b6bff;  /* biru listrik — machine learning */
+  --c-ml-bg:       #e3ebff;
+  --c-ml-tint:     var(--c-ml-bg);
+  --c-ml-sticker:  #7aa5ff;
+  --c-ml-chip:     var(--n-3);
+
+  --c-research:         #7c3aed;  /* ungu — riset & NLP */
+  --c-research-bg:      #eee7ff;
+  --c-research-tint:    var(--c-research-bg);
+  --c-research-sticker: #b69cff;
+  --c-research-chip:    var(--n-3);
+
+  --c-highlight:    #ff7a1a;  /* jingga — penanda & sorotan */
+  --c-highlight-bg: #ffeadb;
+
+  --c-lime:     #c6f04a;  /* blok sorot; tidak untuk teks */
+
+  /* Teks di atas blok TERANG (limau, jingga, stiker) — selalu gelap,
+     di mode terang maupun gelap, karena blok-blok itu terang di kedua
+     mode. */
+  --on-bright: #0d0d0f;
+
+  /* Garis STRUKTUR yang berdiri sendiri — batas nav, pemisah section,
+     tulang timeline. Di mode terang sama dengan tinta. Dipisah dari
+     --ink karena di mode gelap garis yang tidak menempel pada benda
+     berisi warna akan hilang kalau tetap hitam. */
+  --rule: var(--ink);
+
+  /* Stabilo di bawah teks tebal dalam tulisan case study, dan warna
+     teks tebalnya sendiri. */
+  --mark: var(--c-lime);
+  --mark-text: var(--text-strong);
+
+  --ok:   #17a34a;
+  --warn: #ff7a1a;
+
+  /* ----------------------------------------------------------
+     TOKEN SEMANTIK
+     ---------------------------------------------------------- */
+  --bg:            var(--n-1);
+  --bg-alt:        var(--n-2);
+  --surface:       var(--n-3);
+  --border-subtle: var(--n-4);
+  --border:        var(--n-5);
+  --border-strong: var(--n-6);
+  --text-muted:    var(--n-8);
+  --text-secondary:var(--n-9);
+  --text:          var(--n-11);
+  --text-strong:   var(--n-12);
+
+  --accent:        var(--c-web);
+  --accent-bg:     var(--c-web-bg);
+  --accent-cool:   var(--c-ml);
+
+  color-scheme: light;
+
+  /* ----------------------------------------------------------
+     GARIS & BAYANGAN
+     Inti dari gaya ini. Bayangan sengaja tanpa blur sama sekali:
+     bayangan blur berkata "melayang di atas kaca", bayangan padat
+     berkata "benda ini punya tebal dan ditempel di sini".
+     ---------------------------------------------------------- */
+  --bw:    2px;   /* garis biasa */
+  --bw-lg: 3px;   /* garis kartu & elemen besar */
+
+  --shadow:    4px 4px 0 var(--ink);
+  --shadow-lg: 6px 6px 0 var(--ink);
+  --shadow-xl: 9px 9px 0 var(--ink);
+
+  /* ----------------------------------------------------------
+     TIPOGRAFI
+     Satu keluarga: Outfit untuk judul, label, tombol, DAN badan teks.
+     Yang membedakan peran cuma berat dan ukurannya. Font mono hanya
+     untuk potongan kode.
+
+     PENTING: yang dirujuk di sini adalah variabel dari next/font
+     (--font-*-loaded), BUKAN nama font mentah. next/font meng-host
+     font sendiri di bawah nama keluarga hasil generate, jadi
+     menulis "Outfit" langsung tidak akan pernah cocok.
+     ---------------------------------------------------------- */
+  --font-display: var(--font-display-loaded), ui-sans-serif, system-ui, sans-serif;
+  --font-body:    var(--font-display-loaded), ui-sans-serif, system-ui, -apple-system,
+                  "Segoe UI", Roboto, sans-serif;
+  --font-mono:    var(--font-mono-loaded), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --t-xs:   0.78rem;
+  --t-sm:   0.88rem;
+  --t-base: 1rem;
+  --t-md:   clamp(1.0625rem, 0.3vw + 1rem,   1.1875rem);
+  --t-lg:   clamp(1.2rem,   0.55vw + 1.08rem, 1.4rem);
+  --t-xl:   clamp(1.5rem,   1.2vw + 1.18rem,  2.05rem);
+  --t-2xl:  clamp(2rem,     2.5vw + 1.3rem,   3.1rem);
+  --t-3xl:  clamp(2.7rem,   5vw + 1.3rem,     5rem);
+
+  --leading-tight: 1.0;
+  --leading-snug:  1.28;
+  --leading-body:  1.65;
+
+  --measure: 64ch;
+
+  /* ---------- RUANG ---------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 2.75rem;
+  --s-8: 3.5rem;
+  --s-9: 4.5rem;
+  --s-10: 6rem;
+
+  --s-section: clamp(3.25rem, 5vw, 5.5rem);
+  --s-block: clamp(var(--s-5), 2.5vw, var(--s-7));
+
+  /* Membulat, tapi tidak seragam. Pil (999px) untuk apa pun yang
+     bisa diklik; sudut sedang untuk kartu. Perbedaan bentuk ini
+     yang memberi tahu mana benda yang hidup dan mana yang diam. */
+  --radius-sm: 8px;
+  --radius:    12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  /* ---------- GERAK ---------- */
+  --ease:     cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 110ms;
+  --dur:      180ms;
+  --dur-slow: 380ms;
+}
+
+/* ============================================================
+   MODE MALAM — "stiker di papan gelap"
+   ------------------------------------------------------------
+   Versi sebelumnya membalik TINTA: garis dan bayangan jadi krem.
+   Hasilnya terlihat seperti negatif foto — setiap benda punya
+   bayangan terang yang menyala, dan justru itu yang membuat mode
+   gelap terasa dipaksakan.
+
+   Sekarang yang dibalik hanya PAPANNYA. Garis dan bayangan tetap
+   hitam, persis seperti stiker sungguhan yang ditempel di papan
+   gelap. Supaya bayangan hitam masih terbaca, papannya sengaja
+   tidak pekat (abu-ungu, bukan hitam), dan permukaan kartu dibuat
+   lebih terang dari papan.
+
+   Stiker kecil (chip, pil nav, label) tetap cerah dengan teks gelap
+   — di sinilah rasa ceria sistemnya dijaga. Panel besar memakai
+   warna domain yang dalam tapi JELAS berwarna, dengan teks krem.
+
+   Semua pasangan teks/latar sudah diukur: minimal 4.5:1.
+   Hanya aktif kalau pengguna memilihnya lewat tombol.
+   ============================================================ */
+:root[data-theme="dark"] {
+  --ink: #08070b;   /* tetap hitam — lihat catatan di atas */
+
+  --n-1:  #26232f;  /* papan */
+  --n-2:  #2e2a38;  /* section berselang */
+  --n-3:  #3b3548;  /* permukaan kartu — lebih terang dari papan */
+  --n-7:  #8f87a0;
+  --n-8:  #b0a8bc;  /* teks nonaktif */
+  --n-9:  #cfc8d9;  /* teks sekunder */
+  --n-10: #e2dce8;
+  --n-11: #f1ece4;  /* teks utama */
+  --n-12: #f7f3ea;  /* judul */
+
+  /* Warna penuh dinaikkan kecerahannya: dipakai sebagai teks di atas
+     papan dan sebagai isi stiker bertuliskan gelap — keduanya lolos. */
+  --c-web:       #ff72b0;
+  --c-ml:        #82abff;
+  --c-research:  #bb9cff;
+  --c-highlight: #ffae5e;
+  --c-lime:      #cdf05a;
+
+  /* Panel: jenuh dan dalam, bukan keruh. */
+  --c-web-bg:       #7d2350;
+  --c-ml-bg:        #2b4796;
+  --c-research-bg:  #54379e;
+  --c-highlight-bg: #8a3f12;  /* jingga-bata; versi lebih kusam terbaca cokelat */
+
+  /* Stiker kecil & chip dalam panel: cerah, teks gelap. */
+  --c-web-tint:         var(--c-web);
+  --c-web-sticker:      var(--c-web);
+  --c-web-chip:         var(--c-web);
+  --c-ml-tint:          var(--c-ml);
+  --c-ml-sticker:       var(--c-ml);
+  --c-ml-chip:          var(--c-ml);
+  --c-research-tint:    var(--c-research);
+  --c-research-sticker: var(--c-research);
+  --c-research-chip:    var(--c-research);
+
+  --rule: #6b6380;
+  /* Stabilo limau yang diredupkan di papan gelap berubah jadi hijau
+     zaitun yang kusam. Gantinya: teks tebal itu sendiri berwarna limau
+     — lebih ceria, dan kontrasnya 11.9:1. */
+  --mark: transparent;
+  --mark-text: var(--c-lime);
+
+  --ok:   #6ee7a0;
+  --warn: #ffae5e;
+
+  color-scheme: dark;
+}

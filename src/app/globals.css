@@ -1,0 +1,195 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./components.css";
+
+/* Jembatan token → Tailwind v4, supaya utility class bisa memakai
+   token yang sama. Tidak ada warna yang didefinisikan dua kali. */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
+  --color-surface: var(--surface);
+  --color-border-subtle: var(--border-subtle);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-muted: var(--text-muted);
+  --color-secondary: var(--text-secondary);
+  --color-text: var(--text);
+  --color-strong: var(--text-strong);
+  --color-accent: var(--accent);
+  --color-accent-bg: var(--accent-bg);
+  --color-accent-cool: var(--accent-cool);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
+}
+
+/* ============================================================
+   RESET & DASAR
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--t-md);
+  font-weight: 400;
+  line-height: var(--leading-body);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Judul dan badan teks sekeluarga (Outfit). Yang membedakan cuma
+   berat: 800 untuk judul, 400 untuk isi. Letter-spacing judul tidak
+   dirapatkan terlalu jauh — di judul panjang (case study) huruf yang
+   terlalu rapat membuat kata-katanya menempel. */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--t-3xl); letter-spacing: -0.035em; }
+h2 { font-size: var(--t-2xl); letter-spacing: -0.03em; }
+h3 { font-size: var(--t-xl); }
+h4 { font-size: var(--t-lg); }
+
+p { margin: 0; text-wrap: pretty; }
+
+/* ============================================================
+   TAUTAN
+   Garis bawah tebal sewarna teksnya, yang berubah jadi magenta saat
+   disentuh. currentColor, bukan --ink: di mode gelap tinta tetap
+   hitam, dan garis bawah hitam di bawah teks krem tidak terlihat.
+   ============================================================ */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-color var(--dur-fast) var(--ease),
+              color var(--dur-fast) var(--ease);
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+/* Tombol dan chip sudah punya bentuknya sendiri — garis bawah di
+   dalamnya cuma jadi kotor. */
+.btn, .site-nav__links a, .work-card, .site-nav__name, .link-pill, .toc-link {
+  text-decoration: none;
+}
+
+/* Focus ring yang benar-benar terlihat. Jangan pernah
+   menghapus ini demi estetika — ini jalur navigasi utama bagi
+   pengguna keyboard dan pembaca layar. */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 3px solid var(--c-ml);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   ELEMEN UTILITAS
+   ============================================================ */
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  font-feature-settings: "liga" 0;
+}
+
+hr {
+  border: 0;
+  border-top: var(--bw) solid var(--rule);
+  margin: var(--s-7) 0;
+}
+
+img, svg, video { max-width: 100%; height: auto; display: block; }
+
+::selection {
+  background: var(--c-lime);
+  color: var(--on-bright);
+}
+
+/* Konten lebar (tabel, diagram, blok kode) menggulir di dalam
+   wadahnya sendiri. Halaman tidak boleh pernah menggulir
+   horizontal. */
+.scroll-x {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+}
+
+/* ============================================================
+   AKSESIBILITAS GERAK
+   Dihormati sepenuhnya, bukan sekadar dikurangi.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================================
+   LAYOUT PRIMITIF
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: clamp(var(--s-4), 5vw, var(--s-8));
+}
+
+/* Kolom teks selebar nyaman baca. Elemen tertentu boleh
+   "membobol" grid ini lewat .bleed. */
+.prose {
+  max-width: var(--measure);
+}
+
+.bleed {
+  width: 100%;
+  max-width: none;
+}
+
+.section {
+  padding-block: var(--s-section);
+}
+
+/* Label kecil untuk penanda section dan meta. Dulu memakai font mono;
+   sekarang Outfit tebal huruf kapital — masih jelas terbaca sebagai
+   penanda (bukan kalimat), tapi sesuara dengan pil nav dan stiker. */
+.label {
+  font-family: var(--font-display);
+  font-size: var(--t-xs);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

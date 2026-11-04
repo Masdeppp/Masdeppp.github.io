@@ -1,0 +1,26 @@
+{
+  "updatedAt": "2026-09-11",
+  "items": [
+    {
+      "id": "skripsi",
+      "title": "Skripsi: IndoBERT + Graph Neural Network untuk deteksi ujaran kebencian",
+      "kind": "research",
+      "description": "Menggabungkan representasi kontekstual IndoBERT dengan Graph Neural Network supaya klasifikasi satu cuitan ikut memanfaatkan konteks cuitan lain yang berhubungan. 12 label bertingkat, 13.169 cuitan.",
+      "why": "Topik ini diambil karena kebanyakan deteksi ujaran kebencian hanya fokus pada satu cuitan saja, padahal ujaran kebencian seringkali merujuk pada cuitan lain. Selain itu, untuk bahasa indonesia, penggunaan graph untuk representasi teks masih jarang digunakan.",
+      "progress": null,
+      "startedAt": "2026-01",
+      "link": "",
+      "relatedWork": "skripsi"
+    },
+    {
+      "id": "flutter-finance",
+      "title": "Project : Aplikasi mobile monitoring keuangan",
+      "kind": "project",
+      "description": "Aplikasi mobile untuk memantau keuangan, dibangun dengan Flutter. Dengan fitur pencatatan pengeluaran dan pemasukan",
+      "why": "Supaya user dapat memanage pendapatan dan pengeluaran mereka dengan mudah. User dapat mencatat pengeluaran mereka hari itu",
+      "progress": null,
+      "startedAt": "2026-09",
+      "link": ""
+    }
+  ]
+}

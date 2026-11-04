@@ -1,0 +1,93 @@
+---
+slug: skripsi
+title: IndoBERT + Graph Neural Network untuk Deteksi Ujaran Kebencian
+tagline: Menggabungkan pemahaman konteks kalimat dengan struktur hubungan antar-cuitan untuk klasifikasi 12 label sekaligus.
+featured: true
+order: 1
+status: wip
+period:
+  start: TODO
+  end: null
+role: Peneliti
+team: Solo (dengan dosen pembimbing)
+domain:
+  - research
+  - ml
+  - nlp
+stack:
+  - Python
+  - IndoBERT
+  - Graph Neural Network
+  - PyTorch
+  - pandas
+metrics:
+  - label: Ukuran dataset
+    value: "13.169"
+    note: cuitan berbahasa Indonesia
+  - label: Label
+    value: "12"
+    note: multi-label bertingkat
+links:
+  repo: TODO — unggah ke github.com/Masdeppp
+  paper: ""
+cover: /images/work/skripsi/cover.png
+---
+
+> **Judul lengkap:** *Integrasi IndoBERT dan Graph Neural Network untuk
+> Representasi Teks Sadar-Struktur pada Deteksi Ujaran Kebencian Multi-Label
+> Berbahasa Indonesia di Media Sosial.*
+
+## Konteks
+
+Skripsi S1 Informatika Universitas Sebelas Maret, masih berjalan.
+
+Penelitian sekarang sudah mencapai tahap pra-proposal, ada beberapa miskonsepsi antara yang saya pahami dan dosen 
+mengenai bentuk graph dan implementasinya. Sehingga perlu revisi kedepannya untuk menyeleraskan dan
+menyelesaikan penelitian ini.
+
+## Masalah
+
+Deteksi ujaran kebencian Bahasa Indonesia tertinggal jauh dari Bahasa Inggris
+karena sumber daya NLP-nya terbatas. Bahasa gaul, singkatan, campur kode, dan
+sindiran membuat pendekatan berbasis kata kunci sering meleset.
+
+Masalah kedua yang lebih halus: model teks biasa membaca setiap tweet **secara
+terisolasi**. Padahal ujaran kebencian di media sosial jarang berdiri sendiri, ada interaksi
+antar komentar dan user yang membuat konteks itu adalah sebuah ujaran kebencian. 
+Konteks tersebut hilang kalau tiap komen diperlakukan sebagai teks lepas.
+
+## Pendekatan & Keputusan Teknis
+
+Dua sumber informasi digabung: **makna kalimat** dan **struktur hubungan antar-tweet**.
+
+- **IndoBERT** menghasilkan representasi kontekstual tiap cuitan — inilah yang
+  menangani slang, campur kode, dan makna yang bergantung  konteks
+- **Graph Neural Network** memperlakukan cuitan sebagai node dan merambatkan
+  informasi antar-node yang berhubungan, sehingga klasifikasi satu cuitan ikut
+  memanfaatkan konteks tetangganya
+- **Klasifikasi multi-label bertingkat** — 12 label: deteksi dasar (`HS`,
+  `Abusive`), sasaran (individu, kelompok, agama, ras, fisik, gender, lainnya),
+  dan intensitas (lemah, sedang, kuat)
+
+> **Kenapa IndoBERT saja tidak cukup.**
+> IndoBERT memahami isi satu kalimat, tapi tidak tahu apa-apa tentang hubungan
+> antar-kalimat. GNN menambahkan lapisan yang membuat model "sadar-struktur".
+
+> **Label-labelnya tidak independen.**
+> Sebuah cuitan tidak mungkin `HS_Strong` tanpa `HS`. Struktur bertingkat ini
+> adalah bagian dari masalahnya, bukan sekadar 12 klasifikasi biner terpisah.
+
+TODO — jelaskan **cara grafnya dibangun**, satu-dua kalimat. Node-nya cuitan,
+tapi edge-nya berdasarkan apa? Kemiripan embedding, kesamaan kata, atau relasi
+balasan? Ini keputusan paling menentukan di seluruh skripsi, dan paling menarik
+untuk dibaca.
+
+TODO — bagaimana ketimpangan label ditangani, dan metrik apa yang dipakai?
+Accuracy hampir selalu menyesatkan pada multi-label yang timpang.
+
+## Hasil
+
+TODO — masih berjalan. Isi angka apa pun yang sudah ada, walau sementara.
+Kalau sudah ada perbandingan IndoBERT saja vs IndoBERT + GNN, itu angka paling
+penting di seluruh halaman ini — karena itulah yang membuktikan kontribusi
+skripsimu.

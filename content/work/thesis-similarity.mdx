@@ -1,0 +1,61 @@
+---
+slug: thesis-similarity
+title: SiMiJu - Sistem Deteksi Kemiripan Judul Skripsi
+tagline: Sistem NLP yang mencegah duplikasi judul penelitian sebelum proposal disetujui.
+featured: true
+order: 3
+status: shipped
+period:
+  start: 2026-04
+  end: 2026-06
+role: Machine Learning Engineer
+team: Deva Athaya A ; Dzaky Muhammad Zidane ; Farrelly Theo Ariella
+domain:
+  - ml
+  - nlp
+stack:
+  - Python
+  - scikit-learn
+  - TF-IDF
+metrics:
+  - label: Judul di repositori
+    value: 300+
+  - label: Waktu pengecekan
+    value: <5 detik
+links:
+  repo: https://github.com/ZaneWibs/SiMiJu
+  demo: ""
+cover: /images/work/thesis-similarity/cover.png
+---
+
+## Konteks
+
+Dikerjakan selama magang sebagai Machine Learning Engineer di Sekolah Tinggi
+Agama Buddha Negeri Raden Wijaya, April–Juni 2026.
+Permintaan dari pihak kampus STABN sebagai salah syarat penyelesaian magang
+
+## Masalah
+
+Mahasiswa mengajukan judul skripsi tanpa cara praktis mengetahui apakah topik
+serupa sudah pernah diteliti di kampus yang sama. Pengecekan dilakukan manual
+oleh dosen — lambat, tidak konsisten, dan bergantung pada ingatan seseorang
+terhadap repositori.
+
+## Pendekatan & Keputusan Teknis
+
+Pipeline sengaja dibuat lurus dan sederhana:
+
+- **TF-IDF** — pembobotan 10% (per kata) + 5% (per huruf).
+- **BM25** — pembobotan 20% dengan parameter k1 = 1.5 dan b = 0.5.
+- **Jaccard Similarity** — pembobotan 70%; frasa ≥ 3 kata lebih tinggi, kata kunci umum diberi skor rendah.
+- Kombinasi ketiganya meningkatkan akurasi terhadap variasi panjang & struktur frasa judul.
+
+- Bila skor Jaccard tak dapat dimaksimalkan (kata kunci terlalu sedikit), sisa bobotnya didistribusikan proporsional ke TF-IDF & BM25.
+- **Sangat Mirip:** ada judul dengan skor ≥ 68%.
+- **Topik Umum:** rata-rata kejenuhan kata kunci ≥ 35% & > 20 judul mirip.
+- **Aman:** tidak memenuhi kedua kriteria di atas.
+
+## Hasil
+
+Website dapat mendeteksi kemiripan judul skripsi dengan cukup akurat. Dan sekarang Website
+digunakan oleh pihak kampus untuk mencegah duplikasi judul skripsi.

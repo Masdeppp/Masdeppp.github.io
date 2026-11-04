@@ -1,0 +1,1035 @@
+/* ============================================================
+   LAPISAN KOMPONEN — "Sticker"
+   ------------------------------------------------------------
+   Kelas yang dipakai berulang di beberapa halaman. Aturan yang
+   sama seperti tokens.css: tidak ada nilai warna atau ukuran
+   mentah — semuanya lewat token.
+
+   Tiga aturan bentuk yang dipegang di seluruh file ini:
+     1. Apa pun yang bisa diklik berbentuk PIL dan punya bayangan.
+     2. Apa pun yang cuma dibaca berbentuk kotak membulat, tanpa
+        bayangan, atau dengan bayangan yang lebih ringan.
+     3. Menekan sesuatu selalu menggeser bendanya sejauh bayangannya
+        mengecil — jadi gerakannya terasa seperti benda betulan
+        yang ditekan, bukan animasi yang ditempel.
+
+   Dan satu aturan warna teks:
+     - di atas permukaan netral  → --text-strong (ikut mode)
+     - di atas blok cerah        → --on-bright (selalu gelap)
+     Jangan pernah --ink untuk teks: tinta adalah warna GARIS.
+   ============================================================ */
+
+/* ---------- Navigasi ---------- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--bg);
+  border-bottom: var(--bw-lg) solid var(--rule);
+}
+
+.site-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  padding-block: var(--s-3);
+  flex-wrap: wrap;
+}
+
+.site-nav__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-base);
+  color: var(--text-strong);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+
+.site-nav__right { display: flex; align-items: center; gap: var(--s-3); }
+
+.site-nav__links {
+  display: flex;
+  gap: var(--s-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+/* Tiap tautan nav adalah stiker kecil. Warnanya bergilir supaya
+   navigasi ikut hidup tanpa perlu ikon atau emoji. */
+.site-nav__links a {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+  background: var(--surface);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 0.24em 0.8em;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform var(--dur-fast) var(--ease),
+              box-shadow var(--dur-fast) var(--ease),
+              background var(--dur-fast) var(--ease);
+}
+
+.site-nav__links li:nth-child(3n+1) a { background: var(--c-lime);    color: var(--on-bright); }
+.site-nav__links li:nth-child(3n+2) a { background: var(--c-ml-tint); color: var(--on-bright); }
+.site-nav__links li:nth-child(3n+3) a { background: var(--c-web-tint); color: var(--on-bright); }
+
+.site-nav__links a:hover { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--ink); }
+
+/* ---------- Tombol tema ---------- */
+.theme-toggle {
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+  background: var(--c-highlight);
+  color: var(--on-bright);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius-pill);
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.theme-toggle svg { width: 1.05rem; height: 1.05rem; }
+.theme-toggle:hover { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--ink); }
+
+/* ---------- Tombol ---------- */
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-sm);
+  color: var(--text-strong);
+  background: var(--surface);
+  border: var(--bw-lg) solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 0.6em 1.2em;
+  box-shadow: var(--shadow);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.btn--primary { background: var(--c-web);        color: var(--on-bright); }
+.btn--cool    { background: var(--c-ml-sticker); color: var(--on-bright); }
+.btn--lime    { background: var(--c-lime);       color: var(--on-bright); }
+
+.btn:hover  { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); color: var(--text-strong); }
+.btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+.btn--primary:hover, .btn--cool:hover, .btn--lime:hover { color: var(--on-bright); }
+
+/* ---------- Section ---------- */
+.section { padding-block: var(--s-section); }
+
+/* Section berselang diberi latar mentega dengan garis tebal di
+   atas-bawahnya. Garisnya yang memotong halaman jadi bagian —
+   bukan jarak kosong, karena jarak kosong terbaca sebagai halaman
+   yang belum selesai. */
+.section--alt {
+  background: var(--bg-alt);
+  border-block: var(--bw-lg) solid var(--rule);
+}
+
+/* Dua section polos yang berdempetan tidak punya pergantian latar yang
+   memisahkannya — tanpa garis, jarak di antaranya terbaca sebagai ruang
+   kosong. Garis yang sama tebalnya dengan pembatas section lain dipasang
+   otomatis, jadi urutan section boleh diubah tanpa ada yang tertinggal. */
+.section:not(.section--alt) + .section:not(.section--alt) {
+  border-top: var(--bw-lg) solid var(--rule);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--s-block);
+}
+
+/* Tautan "lihat semua" di kepala section. Sebelumnya ini label mono
+   abu-abu yang nyaris tidak terbaca sebagai tautan — padahal justru
+   inilah jalan pembaca ke halaman berikutnya. */
+.link-pill {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-xs);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+  background: var(--surface);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 0.3em 0.9em;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+  white-space: nowrap;
+}
+
+.link-pill:hover { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); color: var(--text-strong); }
+
+/* ---------- Kepala halaman (Work, Journey, Achievements) ---------- */
+.page-title { margin-top: var(--s-5); font-size: var(--t-2xl); }
+.page-title .hilite { padding: 0 0.14em; }
+
+/* Legenda warna: menjelaskan sekali di atas apa arti tiap warna kartu,
+   supaya warnanya dibaca sebagai informasi, bukan hiasan. */
+.chips.legend { margin-top: var(--s-5); } /* dua kelas: .chips di bawah me-reset margin */
+
+/* ---------- Chip / tag ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chip {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-xs);
+  color: var(--text-strong);
+  background: var(--surface);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 0.16em 0.7em;
+  white-space: nowrap;
+}
+
+/* Chip berwarna domain. Kelas inilah yang membuat warna PUNYA ARTI:
+   biru = machine learning, magenta = web, ungu = riset. */
+.chip--ml       { background: var(--c-ml-tint);       color: var(--on-bright); }
+.chip--web      { background: var(--c-web-tint);      color: var(--on-bright); }
+.chip--research { background: var(--c-research-tint); color: var(--on-bright); }
+.chip--live     { background: var(--c-lime);          color: var(--on-bright); }
+
+/* ---------- Kartu proyek ---------- */
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-7) var(--s-6);
+}
+
+@media (min-width: 60rem) {
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+  .span-full { grid-column: 1 / -1; }
+}
+
+.work-card {
+  position: relative;
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  padding: var(--s-6) var(--s-5) var(--s-5);
+  border: var(--bw-lg) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--card-bg, var(--surface));
+  color: var(--text);
+  box-shadow: var(--shadow-lg);
+  transition:
+    transform var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+/* Warna latar kartu, bukan pita tipis di tepi. Sekilas pandang
+   sudah cukup untuk tahu jenis proyeknya.
+
+   Kelas yang sama juga dipakai panel kepala case study, supaya kartu
+   di /work dan halaman isinya memakai warna yang PERSIS sama. Kalau
+   dipisah, cepat atau lambat keduanya akan berbeda tanpa ada yang
+   menyadari. */
+.work-card--ml,       .case-head--ml       { --card-bg: var(--c-ml-bg);       --card-chip: var(--c-ml-chip);       --card-sticker: var(--c-ml-sticker); }
+.work-card--web,      .case-head--web      { --card-bg: var(--c-web-bg);      --card-chip: var(--c-web-chip);      --card-sticker: var(--c-web-sticker); }
+.work-card--research, .case-head--research { --card-bg: var(--c-research-bg); --card-chip: var(--c-research-chip); --card-sticker: var(--c-research-sticker); }
+
+/* Di atas panel berwarna, abu-abu "nonaktif" tidak cukup kontras
+   (terutama panel gelap di mode malam). Label di dalam panel naik
+   satu tingkat ke warna sekunder. */
+.work-card, .case-head, .cert { --text-muted: var(--text-secondary); }
+
+/* Chip di dalam panel memakai isinya sendiri: putih di mode terang,
+   stiker cerah di mode gelap. Kalau dibiarkan memakai warna domain
+   biasa, chip jadi sewarna dengan panel di belakangnya. */
+.work-card .chip,
+.case-head .chip { background: var(--card-chip, var(--surface)); color: var(--on-bright); }
+.work-card .chip--live,
+.case-head .chip--live { background: var(--c-lime); }
+
+/* Diangkat, bukan ditekan: kartu bukan tombol, jadi ia menjauh
+   dari halaman alih-alih tenggelam ke dalamnya. */
+.work-card:hover {
+  transform: translate(-3px, -3px) rotate(-0.5deg);
+  box-shadow: var(--shadow-xl);
+  color: var(--text);
+}
+
+/* Stiker domain yang menempel setengah keluar dari tepi atas kartu.
+   Inilah yang membuat kartu terbaca sebagai benda yang ditempeli
+   label — dan warnanya diulang dalam kata, jadi tidak bergantung
+   pada warna saja. */
+.card-tag {
+  position: absolute;
+  top: 0;
+  right: var(--s-5);
+  transform: translateY(-55%) rotate(2.5deg);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--on-bright);
+  background: var(--card-sticker, var(--c-lime));
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius-pill);
+  box-shadow: 2px 2px 0 var(--ink);
+  padding: 0.28em 0.85em;
+  white-space: nowrap;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.work-card:hover .card-tag { transform: translateY(-55%) rotate(-3deg) scale(1.05); }
+
+.work-card__title {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-xl);
+  color: var(--text-strong);
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.work-card--featured .work-card__title { font-size: var(--t-2xl); }
+
+.work-card__tagline {
+  display: block;
+  margin-top: var(--s-3);
+  color: var(--text-secondary);
+  max-width: 52ch;
+}
+
+/* Baris tanggal + status di atas judul kartu. */
+.card-meta {
+  display: flex;
+  gap: var(--s-3);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- Case study: remah roti ---------- */
+.crumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.crumbs li { display: flex; align-items: center; gap: var(--s-2); min-width: 0; }
+
+.crumbs li + li::before {
+  content: "/";
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--text-muted);
+}
+
+/* Tautan remah roti sedikit lebih besar dari pil biasa — ini jalan
+   pulang utama, jadi harus mudah ditekan di layar sentuh. */
+.crumbs .link-pill { padding: 0.5em 1em; }
+.crumbs li:nth-child(1) .link-pill { background: var(--c-lime);     color: var(--on-bright); }
+.crumbs li:nth-child(2) .link-pill { background: var(--c-ml-tint);  color: var(--on-bright); }
+
+.crumbs__current {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-sm);
+  color: var(--text-secondary);
+  max-width: 38ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- Kepala case study ----------
+   Membungkus judul, meta, dan metrik dalam satu panel berwarna
+   membuat warna domain kartunya ikut terbawa masuk. */
+.case-head {
+  position: relative;
+  border: var(--bw-lg) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--card-bg, var(--surface));
+  box-shadow: var(--shadow-lg);
+  padding: clamp(var(--s-6), 4vw, var(--s-7)) clamp(var(--s-5), 4vw, var(--s-7));
+}
+
+.case-head .card-tag { right: clamp(var(--s-5), 4vw, var(--s-7)); font-size: var(--t-sm); }
+
+.case-head__title {
+  font-size: var(--t-2xl);
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  margin-top: var(--s-4);
+  max-width: 24ch;
+}
+
+.case-head__tagline {
+  margin-top: var(--s-4);
+  font-size: var(--t-lg);
+  line-height: var(--leading-snug);
+  color: var(--text-secondary);
+  max-width: var(--measure);
+}
+
+/* Garis pemisah di dalam panel memakai tinta, bukan abu-abu samar —
+   sama seperti semua garis lain di web ini. */
+.case-head__rule {
+  border: 0;
+  border-top: var(--bw) dashed var(--ink);
+  opacity: 0.45;
+  margin: var(--s-6) 0;
+}
+
+/* ---------- Metrik ---------- */
+.metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-5);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Tiap metrik jadi kartu kecil sendiri, dan tiap kartu sedikit miring
+   ke arah berbeda — seperti catatan yang ditempel satu per satu. Angka
+   yang berdiri bebas mudah terlewat; angka di dalam stiker tidak. */
+.metrics li {
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: var(--s-3) var(--s-4);
+  min-width: 8rem;
+  --text-muted: var(--text-secondary);
+}
+
+.metrics li:nth-child(3n+1) { transform: rotate(-1deg); }
+.metrics li:nth-child(3n+2) { transform: rotate(0.8deg); }
+.metrics li:nth-child(3n+3) { transform: rotate(-0.4deg); }
+
+.metric__value {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-2xl);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-strong);
+  letter-spacing: -0.03em;
+  display: block;
+  line-height: 1.05;
+  margin-top: var(--s-1);
+}
+
+.metric__label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.metric__note {
+  display: block;
+  font-size: var(--t-sm);
+  color: var(--text-secondary);
+  margin-top: var(--s-1);
+  max-width: 28ch;
+}
+
+/* ---------- Tabel meta (case study) ---------- */
+.meta-list {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: var(--s-3) var(--s-5);
+  align-items: baseline;
+  margin: 0;
+  font-size: var(--t-base);
+}
+
+.meta-list dt {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--text-secondary);
+}
+
+.meta-list dd { margin: 0; color: var(--text); }
+
+/* ---------- Isi case study: daftar isi + tulisan ---------- */
+.case-body {
+  display: grid;
+  gap: var(--s-6);
+  margin-top: var(--s-8);
+}
+
+@media (min-width: 64rem) {
+  .case-body { grid-template-columns: 13rem minmax(0, 1fr); gap: var(--s-8); }
+  .case-toc { position: sticky; top: 6rem; align-self: start; }
+}
+
+.case-toc ol {
+  list-style: none;
+  margin: var(--s-3) 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2) var(--s-4);
+}
+
+@media (min-width: 64rem) {
+  .case-toc ol { flex-direction: column; }
+}
+
+.toc-link {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-sm);
+  line-height: var(--leading-snug);
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding-block: var(--s-1);
+}
+
+.toc-link:hover { color: var(--text-strong); }
+
+/* Nomor bagian = stiker kecil. Warnanya bergilir dengan urutan yang
+   SAMA dengan blok judul bagian di tulisannya, jadi nomor di daftar
+   isi dan judul yang dituju terlihat sepasang. */
+.toc-link__num {
+  flex: none;
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.1em;
+  font-weight: 800;
+  font-size: var(--t-xs);
+  color: var(--on-bright);
+  background: var(--c-lime);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius-pill);
+  box-shadow: 2px 2px 0 var(--ink);
+  padding: 0.12em 0.5em;
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.toc-link:hover .toc-link__num { transform: translate(2px, 2px); box-shadow: 0 0 0 var(--ink); }
+
+.case-toc li:nth-child(4n+2) .toc-link__num { background: var(--c-ml-sticker); }
+.case-toc li:nth-child(4n+3) .toc-link__num { background: var(--c-web-sticker); }
+.case-toc li:nth-child(4n+4) .toc-link__num { background: var(--c-highlight); }
+
+/* ---------- Kaki case study ---------- */
+.case-foot {
+  margin-top: var(--s-9);
+  padding-top: var(--s-8);
+  border-top: var(--bw-lg) solid var(--rule);
+  display: grid;
+  gap: var(--s-6);
+}
+
+.case-foot__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+
+.next-card .label { display: block; margin-bottom: var(--s-2); }
+
+/* ---------- Timeline ---------- */
+/* Grid + gap, BUKAN padding-bottom per item. Jaraknya harus datang
+   dari wadahnya begitu tiap entri jadi kartu — kalau tidak, padding
+   jaraknya dan padding isi kartunya jadi satu nilai yang sama dan
+   tidak bisa diatur sendiri-sendiri. */
+.timeline { position: relative; padding-left: var(--s-7); display: grid; gap: var(--s-5); }
+
+/* Garis tebal, bukan gradasi samar. Dalam sistem ini garis adalah
+   struktur, jadi ia harus punya berat yang sama dengan garis-garis
+   lain di halaman. */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  bottom: 0;
+  width: var(--bw-lg);
+  background: var(--rule);
+}
+
+.timeline__item {
+  position: relative;
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: var(--s-5);
+}
+
+/* Titiknya kotak membulat bertepi tebal — bentuk yang sama dengan
+   chip, jadi seluruh halaman terasa dari satu keluarga. */
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--s-7) * -1);
+  top: var(--s-5);
+  width: 15px;
+  height: 15px;
+  border-radius: 5px;
+  background: var(--surface);
+  border: var(--bw) solid var(--ink);
+  transform: translateX(-6px) rotate(45deg);
+  transition: transform var(--dur) var(--ease-out), background var(--dur) var(--ease);
+}
+
+.timeline__item:hover::before {
+  transform: translateX(-6px) rotate(45deg) scale(1.35);
+  background: var(--c-ml);
+}
+
+/* Semua titik polos; warnanya baru muncul saat kartunya disentuh.
+   Status "masih berjalan" dibawa chip di kartu, BUKAN titik — titik yang
+   sudah berwarna sebelum disentuh kursor terbaca seperti hover yang
+   nyangkut. */
+
+/* Tanggal. Dulu font mono; sekarang Outfit setengah tebal — tetap
+   terbaca sebagai data kecil, tapi tidak lagi terasa seperti log. */
+.timeline__period {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-sm);
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.timeline__org { color: var(--text-secondary); font-size: var(--t-base); }
+
+.bullets {
+  margin: var(--s-3) 0 0;
+  padding-left: 1.1em;
+  list-style: disc;
+  display: grid;
+  gap: var(--s-2);
+  color: var(--text-secondary);
+  font-size: var(--t-base);
+  max-width: var(--measure);
+}
+
+.bullets li::marker { color: var(--c-web); }
+
+/* ---------- Achievements ---------- */
+.cert {
+  border: var(--bw-lg) solid var(--ink);
+  border-radius: var(--radius-lg);
+  padding: clamp(var(--s-5), 3vw, var(--s-6));
+  background: var(--c-ml-bg);
+  box-shadow: var(--shadow-lg);
+}
+
+.cert .chip--ml { background: var(--c-ml-chip); }
+
+/* <details> dipakai supaya accordion bekerja tanpa JavaScript sama
+   sekali, dan tetap aksesibel lewat keyboard secara bawaan. */
+.cert__more { margin-top: var(--s-5); }
+
+.cert__more > summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-sm);
+  color: var(--on-bright);
+  background: var(--c-lime);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius-pill);
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 0.35em 0.9em;
+  list-style: none;
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.cert__more > summary:hover { transform: translate(3px, 3px); box-shadow: 0 0 0 var(--ink); }
+.cert__more > summary::-webkit-details-marker { display: none; }
+.cert__more > summary::before { content: "+ "; }
+.cert__more[open] > summary::before { content: "− "; }
+
+.cert-group { margin-top: var(--s-5); }
+
+.cert-group__name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--t-base);
+  color: var(--text-strong);
+}
+
+.cert-group__list {
+  list-style: none;
+  padding: 0 0 0 var(--s-4);
+  margin: var(--s-3) 0 0;
+  display: grid;
+  gap: var(--s-2);
+  border-left: var(--bw) solid var(--ink);
+}
+
+.cert-course {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  font-size: var(--t-sm);
+}
+
+.cert-course__date {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--t-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ---------- Prose MDX ----------
+   Tulisan case study. Masalah yang diselesaikan bagian ini: halaman
+   isi terasa seperti dokumen polos begitu kartunya diklik. Solusinya
+   bukan menambah hiasan acak, tapi memakai bahasa stiker yang SAMA
+   untuk struktur tulisannya — judul bagian bernomor, catatan jadi
+   kertas tempel, poin daftar jadi stiker kecil. */
+.mdx { max-width: var(--measure); counter-reset: section; }
+.mdx > * + * { margin-top: var(--s-4); }
+.mdx > :first-child { margin-top: 0; }
+
+/* Judul bagian = blok stiker bernomor. Warnanya bergilir mengikuti
+   urutan yang sama dengan nomor di daftar isi. */
+.mdx h2 {
+  counter-increment: section;
+  font-size: var(--t-xl);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-top: var(--s-8);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  background: var(--c-lime);
+  border: var(--bw-lg) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0.22em 0.6em 0.26em 0.3em;
+  color: var(--on-bright);
+  transform: rotate(-1deg);
+  scroll-margin-top: 6rem;
+}
+
+.mdx h2::before {
+  content: counter(section, decimal-leading-zero);
+  font-size: 0.6em;
+  line-height: 1;
+  color: var(--c-lime);
+  background: var(--on-bright);
+  border-radius: var(--radius-pill);
+  padding: 0.3em 0.5em;
+}
+
+.mdx h2:nth-of-type(4n+2) { background: var(--c-ml-sticker);  transform: rotate(0.8deg); }
+.mdx h2:nth-of-type(4n+3) { background: var(--c-web-sticker); transform: rotate(-0.6deg); }
+.mdx h2:nth-of-type(4n+4) { background: var(--c-highlight);   transform: rotate(0.5deg); }
+
+/* Paragraf pertama sesudah judul bagian diberi jarak lebih — blok
+   stiker yang miring butuh ruang supaya tidak menabrak teks. */
+.mdx h2 + * { margin-top: var(--s-5); }
+
+.mdx h3 { font-size: var(--t-lg); font-weight: 800; margin-top: var(--s-6); }
+
+.mdx strong {
+  font-weight: 700;
+  color: var(--mark-text);
+  background: linear-gradient(transparent 60%, var(--mark) 60%);
+  padding-inline: 0.06em;
+}
+
+/* Poin daftar = stiker kecil miring, warnanya bergilir. */
+.mdx ul { list-style: none; padding-left: 0; display: grid; gap: var(--s-3); }
+.mdx ul > li { position: relative; padding-left: 1.7em; }
+.mdx ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.15em;
+  top: 0.5em;
+  width: 0.7em;
+  height: 0.7em;
+  background: var(--c-web-sticker);
+  border: var(--bw) solid var(--ink);
+  border-radius: 3px;
+  transform: rotate(12deg);
+}
+.mdx ul > li:nth-child(3n+2)::before { background: var(--c-ml-sticker); transform: rotate(-8deg); }
+.mdx ul > li:nth-child(3n+3)::before { background: var(--c-lime);       transform: rotate(20deg); }
+
+.mdx ol { padding-left: 1.4em; display: grid; gap: var(--s-3); }
+.mdx ol > li::marker { font-family: var(--font-display); font-weight: 800; color: var(--text-strong); }
+
+/* Catatan = kertas tempel. Miringnya bergantian dan warnanya bergilir,
+   jadi dua catatan berurutan tidak terlihat seperti fotokopi. Kalimat
+   tebal pertama di dalamnya naik jadi judul catatan. */
+.mdx blockquote {
+  margin: var(--s-6) 0;
+  padding: var(--s-4) var(--s-5);
+  border: var(--bw-lg) solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--c-highlight-bg);
+  box-shadow: var(--shadow);
+  color: var(--text);
+  transform: rotate(-0.5deg);
+}
+
+.mdx blockquote:nth-of-type(3n+2) { background: var(--c-ml-bg);       transform: rotate(0.45deg); }
+.mdx blockquote:nth-of-type(3n+3) { background: var(--c-research-bg); transform: rotate(-0.3deg); }
+
+.mdx blockquote > * + * { margin-top: var(--s-2); }
+.mdx blockquote p { margin: 0; }
+.mdx blockquote strong { background: none; padding: 0; color: var(--text-strong); }
+.mdx blockquote p > strong:first-child {
+  display: block;
+  font-size: var(--t-lg);
+  font-weight: 800;
+  line-height: var(--leading-snug);
+  letter-spacing: -0.015em;
+  margin-bottom: var(--s-1);
+}
+
+.mdx table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: var(--t-sm);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 var(--ink);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.mdx th, .mdx td {
+  text-align: left;
+  padding: var(--s-2) var(--s-3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.mdx tr:last-child td { border-bottom: 0; }
+
+.mdx th {
+  font-family: var(--font-display);
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  background: var(--c-lime);
+  color: var(--on-bright);
+  font-weight: 700;
+  border-bottom: var(--bw) solid var(--ink);
+}
+
+.mdx code {
+  background: var(--c-lime);
+  color: var(--on-bright);
+  padding: 0.1em 0.38em;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--ink);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  border-top: var(--bw-lg) solid var(--rule);
+  background: var(--bg-alt);
+  padding-block: var(--s-8);
+}
+
+/* ============================================================
+   GERAK & TEKSTUR
+   ============================================================ */
+
+/* Reveal DUA ARAH — muncul saat masuk layar, menghilang lagi saat
+   keluar, jadi animasinya terulang kalau digulir balik ke atas. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 480ms var(--ease-out),
+    transform 480ms var(--ease-out);
+}
+
+.reveal--in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Indikator progres scroll. animation-timeline: scroll() jalan tanpa
+   JavaScript; browser yang belum mendukung cukup tidak menampilkannya. */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 6px;
+  width: 100%;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg,
+    var(--c-ml) 0 25%, var(--c-research) 25% 50%,
+    var(--c-web) 50% 75%, var(--c-highlight) 75% 100%);
+  border-bottom: var(--bw) solid var(--ink);
+  z-index: 20;
+  scale: 0 1;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: progress linear;
+    animation-timeline: scroll(root block);
+  }
+}
+
+@keyframes progress { to { scale: 1 1; } }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: var(--bg);
+  border-bottom: var(--bw-lg) solid var(--rule);
+  padding-block: clamp(var(--s-8), 9vw, var(--s-10));
+}
+
+.hero__inner { position: relative; z-index: 2; width: 100%; }
+
+/* Latent field hanya muncul di layar lebar, di sebelah kanan teks.
+   Di layar sempit ia mau tidak mau bertumpuk dengan judul, dan titik
+   bertepi hitam di belakang huruf tebal membuat keduanya sama-sama
+   sulit dibaca. Lebih baik tidak ada sama sekali daripada ada tapi
+   mengganggu. */
+.latent-field { display: none; }
+
+@media (min-width: 64rem) {
+  .latent-field {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 46%;
+    /* LEBAR HARUS DITULIS EKSPLISIT.
+       <canvas> adalah replaced element: kalau width-nya `auto`, browser
+       TIDAK memakai pasangan left/right untuk menghitung lebarnya —
+       ia memakai rasio bawaan dari atribut width/height kanvas. Karena
+       skrip mengisi atribut itu dari hasil pengukuran, jadilah lingkaran
+       setan: kanvas mengukur dirinya, tumbuh, lalu mengukur lagi.
+       Hasilnya kanvas melar sampai ~1466px di viewport 1440px dan satu
+       cluster penuh terdorong ke luar layar tanpa jejak.
+       Menulis width di sini memutus lingkaran itu. */
+    width: 54%;
+    height: 100%;
+    z-index: 0;
+  }
+}
+
+/* Blok sorot di belakang huruf, bukan huruf berwarna. Blok punya
+   berat; teks berwarna tidak — dan berat itulah yang membuat nama
+   berhenti dibaca sebagai teks biasa. */
+.hilite {
+  background: var(--c-lime);
+  color: var(--on-bright);
+  padding: 0 0.1em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+/* ---------- Nama di hero ----------
+   Tiap kata punya baris dan topengnya sendiri, dan tiap kata adalah
+   inline-block dengan ruang bawah untuk ekor huruf (y, p, g, j).
+
+   Kenapa: dulu "Athaya Aryaputra" berada di SATU topeng yang terlipat
+   jadi dua baris dengan line-height 1. Latar sorot baris kedua dicat
+   SESUDAH teks baris pertama dan menutupi ekor huruf di atasnya —
+   "y" di Athaya terpotong jadi "v". Dengan satu kata per kotak yang
+   tingginya sudah memuat ekor huruf, tidak ada latar yang bisa
+   menimpa baris lain. */
+.hero__name { margin-top: var(--s-5); line-height: 1; }
+
+.hero__word {
+  display: inline-block;
+  padding-bottom: 0.14em;
+}
+
+.hero__word.hilite { padding: 0.02em 0.14em 0.14em; }
+
+/* Tiap kata blok stiker dengan warna sendiri, bergilir ungu → limau →
+   merah muda. Yang dipakai versi "sticker" (cerah) dari tiap warna,
+   bukan warna penuhnya: teks gelap tetap terbaca di atasnya di kedua
+   mode, dan blok yang cerah-lembut tidak bersaing dengan judul peran
+   berwarna biru tepat di bawahnya. Biru sengaja tidak dipakai di sini
+   karena alasan yang sama. */
+.hero__word--1 { background: var(--c-research-sticker); }
+.hero__word--2 { background: var(--c-lime); }
+.hero__word--3 { background: var(--c-web-sticker); }
+
+/* Eyebrow sebagai stiker miring. Kemiringannya kecil — kalau semua
+   elemen miring, tidak ada yang terlihat sengaja. */
+.sticker {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--on-bright);
+  background: var(--c-highlight);
+  border: var(--bw) solid var(--ink);
+  border-radius: var(--radius-pill);
+  padding: 0.28em 0.85em;
+  box-shadow: 3px 3px 0 var(--ink);
+  transform: rotate(-2.5deg);
+}
+
+/* Judul hero naik dari balik topeng overflow — efek tipografi cetak,
+   jauh lebih berkarakter daripada fade-in biasa. */
+.line-mask { overflow: hidden; display: block; }
+
+.line-mask > span {
+  display: block;
+  transform: translateY(105%);
+  animation: line-up 700ms var(--ease-out) forwards;
+}
+
+.line-mask:nth-of-type(2) > span { animation-delay: 80ms; }
+.line-mask:nth-of-type(3) > span { animation-delay: 160ms; }
+.line-mask:nth-of-type(4) > span { animation-delay: 240ms; }
+
+@keyframes line-up { to { transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .line-mask > span { transform: none; animation: none; }
+}

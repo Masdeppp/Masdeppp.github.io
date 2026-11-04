@@ -1,0 +1,107 @@
+{
+  "entries": [
+    {
+      "id": "uns-informatika",
+      "type": "education",
+      "title": "Sarjana Informatika",
+      "organization": "Universitas Sebelas Maret",
+      "location": "Surakarta, Jawa Tengah",
+      "startDate": "2022-08",
+      "endDate": null,
+      "summary": "Program sarjana Informatika dengan fokus pada Artificial Intelligence dan Machine Learning, khususnya penerapan ML untuk masalah kesehatan dan predictive analytics.",
+      "highlights": [
+        "Skripsi: integrasi IndoBERT dan Graph Neural Network untuk deteksi ujaran kebencian multi-label Bahasa Indonesia",
+        "IPK 3.5"
+      ],
+      "stack": [
+        "Python",
+        "IndoBERT",
+        "Graph Neural Network",
+        "PyTorch"
+      ],
+      "link": "",
+      "relatedWork": "skripsi"
+    },
+    {
+      "id": "bangkit-2024",
+      "type": "internship",
+      "title": "Machine Learning Cohort",
+      "organization": "Bangkit Academy led by Google, Tokopedia, Gojek & Traveloka",
+      "location": "Remote",
+      "startDate": "2024-09",
+      "endDate": "2024-12",
+      "summary": "Program intensif 4 bulan penuh waktu jalur Machine Learning di bawah kurikulum Google, bagian dari MSIB Kampus Merdeka. Diselesaikan dengan 23 sertifikat kursus dan satu capstone project.",
+      "highlights": [
+        "Menyelesaikan Machine Learning Specialization (DeepLearning.AI & Stanford) dan TensorFlow Developer Professional Certificate",
+        "Mendalami deep learning, computer vision, NLP, GANs, dan deployment model ke browser serta perangkat mobile",
+        "Berperan sebagai ML Engineer dalam capstone project Obye"
+      ],
+      "stack": [
+        "TensorFlow",
+        "Python",
+        "FastAPI",
+        "Docker",
+        "Cloud Run",
+        "MySQL"
+      ],
+      "link": "https://github.com/Obye-Capstone-Project-Bangkit2-24",
+      "relatedAchievement": "bangkit-2024-ml",
+      "relatedWork": "obye"
+    },
+    {
+      "id": "kkn-uns-2025",
+      "type": "organization",
+      "title": "Ketua Kelompok KKN (Kuliah Kerja Nyata)",
+      "organization": "Universitas Sebelas Maret",
+      "location": "Desa Bokoharjo",
+      "startDate": "2025-07",
+      "endDate": "2025-08",
+      "summary": "Memimpin tim multidisiplin untuk program transformasi digital UMKM desa, dengan fokus pada adopsi WhatsApp Business sebagai kanal penjualan dan layanan pelanggan.",
+      "highlights": [
+        "Melatih pemilik UMKM dan perangkat desa menggunakan alat komunikasi digital",
+        "Memimpin tim mahasiswa lintas jurusan dalam program pemberdayaan ekonomi desa"
+      ],
+      "stack": [],
+      "link": ""
+    },
+    {
+      "id": "stab-raden-wijaya-2026",
+      "type": "internship",
+      "title": "Machine Learning Engineer",
+      "organization": "Sekolah Tinggi Agama Buddha Negeri Raden Wijaya",
+      "location": "Wonogiri",
+      "startDate": "2026-04",
+      "endDate": "2026-06",
+      "summary": "Membangun sistem NLP untuk mengukur kemiripan judul skripsi yang diajukan terhadap repositori judul yang sudah ada, sebagai alat deteksi dini duplikasi topik penelitian.",
+      "highlights": [
+        "Menerapkan TF-IDF vectorization dan cosine similarity untuk mengukur derajat kemiripan",
+        "Membangun pipeline text preprocessing: case folding, tokenization, stopword removal",
+        "Memungkinkan deteksi dini topik penelitian yang mirip atau duplikat untuk mendukung keputusan akademik",
+        "Sistem dipakai oleh pihak kampus untuk mendeteksi kemiripan judul skripsi yang diajukan mahasiswa"
+      ],
+      "stack": [
+        "Python",
+        "scikit-learn",
+        "TF-IDF"
+      ],
+      "link": "",
+      "relatedWork": "thesis-similarity"
+    },
+    {
+      "id": "stab-raden-wijaya-it-2026",
+      "type": "internship",
+      "title": "IT Support Specialist",
+      "organization": "Sekolah Tinggi Agama Buddha Negeri Raden Wijaya",
+      "location": "Wonogiri",
+      "startDate": "2026-04",
+      "endDate": "2026-06",
+      "summary": "Menangani dukungan teknis untuk staf akademik dan mahasiswa, serta pemeliharaan Sistem Informasi Akademik (SIAKAD).",
+      "highlights": [
+        "Memelihara dan melakukan troubleshooting SIAKAD agar operasional harian tidak terganggu",
+        "Mendiagnosis dan menyelesaikan masalah software, sistem, dan pengguna"
+      ],
+      "stack": [],
+      "link": ""
+    }
+  ]
+}

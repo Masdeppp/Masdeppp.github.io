@@ -1,0 +1,106 @@
+{
+  "items": [
+    {
+      "id": "bangkit-2024-ml",
+      "title": "Bangkit Academy 2024 — Machine Learning Path",
+      "issuer": "Google, Tokopedia, Gojek & Traveloka",
+      "category": "certification",
+      "featured": true,
+      "date": "2025-01-10",
+      "periodStart": "2024-09-06",
+      "periodEnd": "2024-12-31",
+      "scale": "national",
+      "description": "Program akademi 4 bulan penuh waktu di bawah kurikulum Google, bagian dari MSIB Kampus Merdeka. Lulus di jalur Machine Learning dengan 23 sertifikat kursus pendukung.",
+      "credentialId": "BA24/GRAD/XXV-01/M312B4KY1057",
+      "verifyUrl": "TODO — unggah PDF sertifikat ke /public/certificates/bangkit-2024.pdf",
+      "skills": ["TensorFlow", "Deep Learning", "Computer Vision", "NLP", "GANs"],
+      "relatedWork": "obye",
+      "childrenLabel": "23 sertifikat kursus pendukung",
+      "children": [
+        {
+          "group": "Machine Learning Specialization",
+          "issuer": "DeepLearning.AI & Stanford University",
+          "type": "specialization",
+          "verifyUrl": "https://coursera.org/verify/specialization/OMZ8H6R4EY2V",
+          "date": "2024-10-23",
+          "courses": [
+            { "title": "Supervised Machine Learning: Regression and Classification", "date": "2024-10-14", "verifyUrl": "https://coursera.org/verify/C9YCH09N1NLA" },
+            { "title": "Advanced Learning Algorithms", "date": "2024-10-19", "verifyUrl": "https://coursera.org/verify/2ZGR4CHCX4OI" },
+            { "title": "Unsupervised Learning, Recommenders, Reinforcement Learning", "date": "2024-10-23", "verifyUrl": "https://coursera.org/verify/GNGLZTRB5UUQ" }
+          ]
+        },
+        {
+          "group": "DeepLearning.AI TensorFlow Developer",
+          "issuer": "DeepLearning.AI",
+          "type": "professional-certificate",
+          "verifyUrl": "https://coursera.org/verify/professional-cert/8IDZAKE7GNX9",
+          "date": "2024-11-01",
+          "courses": [
+            { "title": "Introduction to TensorFlow for AI, ML, and Deep Learning", "date": "2024-10-26", "verifyUrl": "https://coursera.org/verify/EEWYT3IBXZYD" },
+            { "title": "Convolutional Neural Networks in TensorFlow", "date": "2024-10-27", "verifyUrl": "https://coursera.org/verify/YRY5E65NTYLE" },
+            { "title": "Natural Language Processing in TensorFlow", "date": "2024-10-29", "verifyUrl": "https://coursera.org/verify/JGUIMW7FNRVO" },
+            { "title": "Sequences, Time Series and Prediction", "date": "2024-11-01", "verifyUrl": "https://coursera.org/verify/XD6LUDUZX7XK" }
+          ]
+        },
+        {
+          "group": "TensorFlow: Data and Deployment",
+          "issuer": "DeepLearning.AI",
+          "type": "courses",
+          "note": "Deployment model ke browser, perangkat mobile, dan pipeline data",
+          "courses": [
+            { "title": "Browser-based Models with TensorFlow.js", "date": "2024-11-10", "verifyUrl": "https://coursera.org/verify/9CDMY2PGNSK7" },
+            { "title": "Device-based Models with TensorFlow Lite", "date": "2024-11-13", "verifyUrl": "https://coursera.org/verify/H74OHDZGYMRC" },
+            { "title": "Data Pipelines with TensorFlow Data Services", "date": "2024-11-16", "verifyUrl": "https://coursera.org/verify/F76F6INN6HYP" }
+          ]
+        },
+        {
+          "group": "TensorFlow: Advanced Techniques",
+          "issuer": "DeepLearning.AI",
+          "type": "courses",
+          "courses": [
+            { "title": "Custom Models, Layers, and Loss Functions with TensorFlow", "date": "2024-11-17", "verifyUrl": "https://coursera.org/verify/G75G6CXFP3VL" },
+            { "title": "Custom and Distributed Training with TensorFlow", "date": "2024-11-21", "verifyUrl": "https://coursera.org/verify/B72GJ2C08OXJ" },
+            { "title": "Advanced Computer Vision with TensorFlow", "date": "2024-12-03", "verifyUrl": "https://coursera.org/verify/ZICSCT9FIPQF" }
+          ]
+        },
+        {
+          "group": "Generative AI & Fondasi Matematika",
+          "issuer": "DeepLearning.AI",
+          "type": "courses",
+          "courses": [
+            { "title": "Linear Algebra for Machine Learning and Data Science", "date": "2024-10-09", "verifyUrl": "https://coursera.org/verify/3Y0X8X0A3C1T" },
+            { "title": "Structuring Machine Learning Projects", "date": "2024-11-04", "verifyUrl": "https://coursera.org/verify/1IY7AWI0S56I" },
+            { "title": "Build Basic Generative Adversarial Networks (GANs)", "date": "2024-12-03", "verifyUrl": "https://coursera.org/verify/M67RPPWO4GKJ" },
+            { "title": "Generative AI for Everyone", "date": "2024-12-03", "verifyUrl": "https://coursera.org/verify/8642P46BJ60U" }
+          ]
+        },
+        {
+          "group": "Python Fundamentals",
+          "issuer": "Google",
+          "type": "courses",
+          "courses": [
+            { "title": "Crash Course on Python", "date": "2024-09-24", "verifyUrl": "https://coursera.org/verify/YP46E42AA1U0" },
+            { "title": "Using Python to Interact with the Operating System", "date": "2024-09-29", "verifyUrl": "https://coursera.org/verify/FVIQ7UJRWFWW" }
+          ]
+        },
+        {
+          "group": "Fondasi Software Engineering",
+          "issuer": "Dicoding Indonesia",
+          "type": "courses",
+          "courses": [
+            { "title": "Pengenalan ke Logika Pemrograman (Programming Logic 101)", "date": "2024-09-13", "verifyUrl": "https://www.dicoding.com/certificates/2VX3RQRDVZYQ" },
+            { "title": "Memulai Dasar Pemrograman untuk Menjadi Pengembang Software", "date": "2024-09-13", "verifyUrl": "https://www.dicoding.com/certificates/EYX4VW07RZDL", "note": "Nilai akhir 95" },
+            { "title": "Belajar Dasar Git dengan GitHub", "date": "2024-09-16", "verifyUrl": "https://www.dicoding.com/certificates/1RXYL5MVQPVM" },
+            { "title": "Belajar Analisis Data dengan Python", "date": "2024-10-06", "verifyUrl": "https://www.dicoding.com/certificates/KEXLY9R7WZG2" }
+          ]
+        }
+      ]
+    }
+  ],
+  "_catatan_struktur": {
+    "_hapus_setelah_dibaca": true,
+    "kenapa_bersarang": "23 sertifikat ditampilkan sebagai SATU kartu Bangkit dengan accordion di dalamnya. HR yang memindai melihat satu sinyal kuat; engineer yang ingin memverifikasi bisa membuka. 23 kartu terpisah akan membuat halaman terlihat seperti daftar kursus, bukan daftar pencapaian.",
+    "semua_terverifikasi": "Semua 23 verifyUrl adalah tautan resmi Coursera/Dicoding, bukan link Google Drive. Ini jauh lebih kredibel dan tidak akan rusak karena masalah permission.",
+    "yang_masih_kosong": "Belum ada entri kategori 'award' atau 'competition'. Kalau kamu punya penghargaan, lomba, beasiswa, atau publikasi — tambahkan, karena itu jenis pencapaian yang paling membedakan."
+  }
+}

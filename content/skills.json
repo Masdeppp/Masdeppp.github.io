@@ -1,0 +1,120 @@
+{
+  "groups": [
+    {
+      "name": "Machine Learning",
+      "items": [
+        {
+          "name": "Python",
+          "level": "advanced",
+          "note": "untuk data & ML; di luar itu intermediate"
+        },
+        {
+          "name": "TensorFlow / Keras",
+          "level": "intermediate",
+          "note": "training, fine-tuning, deployment ke API"
+        },
+        {
+          "name": "scikit-learn",
+          "level": "intermediate",
+          "note": "TF-IDF, cosine similarity, model klasik"
+        },
+        {
+          "name": "NLP",
+          "level": "intermediate",
+          "note": "Bahasa Indonesia, multi-label"
+        },
+        {
+          "name": "Computer Vision",
+          "level": "beginner",
+          "note": "dari kursus bersertifikat"
+        },
+        {
+          "name": "GANs / Generative AI",
+          "level": "beginner",
+          "note": "dari kursus bersertifikat"
+        }
+      ]
+    },
+    {
+      "name": "Web & Backend",
+      "items": [
+        {
+          "name": "Laravel / PHP",
+          "level": "intermediate",
+          "note": "tiga sistem web dengan RBAC"
+        },
+        {
+          "name": "REST API",
+          "level": "intermediate",
+          "note": "jalur integrasi model ML ke aplikasi"
+        },
+        {
+          "name": "Authentication & Authorization",
+          "level": "intermediate",
+          "note": "role-based access control"
+        },
+        {
+          "name": "FastAPI / Flask",
+          "level": "intermediate",
+          "note": "menyajikan model ML sebagai service"
+        },
+        {
+          "name": "MySQL / PostgreSQL",
+          "level": "intermediate",
+          "note": ""
+        },
+        {
+          "name": "Git & GitHub",
+          "level": "advanced",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "Frontend",
+      "items": [
+        {
+          "name": "HTML & CSS",
+          "level": "intermediate",
+          "note": "responsive / mobile-first"
+        },
+        {
+          "name": "Blade (Laravel)",
+          "level": "intermediate",
+          "note": "template engine Laravel"
+        },
+        {
+          "name": "Tailwind CSS / Bootstrap",
+          "level": "intermediate",
+          "note": ""
+        },
+        {
+          "name": "JavaScript",
+          "level": "beginner",
+          "note": "interaktivitas dasar; bukan fokus utama"
+        },
+        {
+          "name": "Next.js / React",
+          "level": "beginner",
+          "note": "dipelajari lewat portfolio ini"
+        },
+        {
+          "name": "Figma",
+          "level": "intermediate",
+          "note": "mendesain sendiri sebelum coding"
+        }
+      ]
+    }
+  ],
+  "_catatan": {
+    "_hapus_setelah_dibaca": true,
+    "definisi_level": {
+      "beginner": "Pernah dipakai dengan panduan atau tutorial",
+      "intermediate": "Bisa membangun fitur sendiri sambil buka dokumentasi",
+      "advanced": "Bisa membaca & memperbaiki kode orang lain, dan menjelaskan trade-off"
+    },
+    "dihapus_5sep": "Grup 'Deployment & Tooling' dan 'Design & Kolaborasi' dibuang karena halaman terlalu padat. Git & GitHub dipindah ke Web & Backend, Figma dipindah ke Frontend — dua itu terlalu bernilai untuk ikut hilang. Yang benar-benar dibuang: TensorFlow Lite, TensorFlow.js, Android Studio, Trello (semuanya beginner / sinyal lemah).",
+    "diratakan_11sep": "Tiap grup dibuat 6 item supaya tiga kolom Toolbox sejajar. Dibuang: Desain Database, Chart.js. Digabung: MySQL + PostgreSQL, Laravel + PHP, Tailwind CSS + Bootstrap. Catatan NLP dipendekkan supaya tidak turun ke baris kedua dan menggeser baris di kolomnya.",
+    "sertifikat_tetap_aman": "Sertifikat TF Lite & TF.js tetap tampil lengkap di section Achievements dengan link verifikasi. Yang hilang cuma klaim skill-nya, bukan buktinya."
+  }
+}

@@ -1,0 +1,69 @@
+---
+slug: obye
+title: Obye
+tagline: Klasifikasi tingkat obesitas dari 18 faktor gaya hidup, disajikan sebagai REST API di Cloud Run.
+featured: true
+order: 2
+status: shipped
+period:
+  start: 2024-10
+  end: 2024-12
+role: Machine Learning.
+team: Tim capstone lintas jalur (ML, Cloud Computing, Mobile Development)
+domain:
+  - ml
+  - backend
+stack:
+  - TensorFlow
+  - FastAPI
+  - Docker
+  - Cloud Run
+  - Cloud SQL
+  - MySQL
+metrics:
+  - label: Fitur input
+    value: "18"
+    note: demografi, kebiasaan makan, aktivitas harian
+  - label: Kelas output
+    value: "7"
+    note: Underweight sampai Obesity Type III
+links:
+  repo: https://github.com/Obye-Capstone-Project-Bangkit2-24/MLTrain
+  demo: "https://www.figma.com/design/rexXDTwW26dnQRCgiXiUZB/CAPSTONE-PROJECT?m=auto&t=aMTxsgGP0W6Ek45F-1"
+cover: /images/work/obye/cover.png
+---
+
+## Konteks
+
+Capstone project Bangkit Academy 2024 Batch 2, dikerjakan tim lintas jalur selama
+fase capstone. Repositori tim terbagi tiga: `MLTrain` (model + API prediksi),
+`akun-management`, dan `android-api`.
+
+Saya sebagai Machine Learning bertanggung jawab untuk melakukan data scraping, 
+data preprocessing, data training, model evaluation, dan deployment model ke Cloud Run.
+
+## Masalah
+
+Banyak orang ingin mencapai berat badan yang ideal namun tidak mengetahui faktor-faktor
+yang memengaruhi berat badan mereka, ataupun bagaimana cara mencapai berat badan yang ideal. 
+
+## Pendekatan & Keputusan Teknis
+
+Model TensorFlow memetakan **18 fitur** gaya hidup ke **7 tingkat obesitas**,
+dibungkus sebagai REST API dan dideploy ke Cloud Run.
+
+- **Tiga kelompok fitur** — demografi & fisik, kebiasaan makan, dan perilaku
+  harian (aktivitas, asupan air, transportasi)
+- **Tiga endpoint** — `GET /` status, `POST /predict` klasifikasi,
+  `GET /predict/{id}` ambil riwayat
+- **Setiap prediksi disimpan ke Cloud SQL** — memberi pengguna riwayat, dan
+  memberi tim data nyata untuk melatih ulang model
+
+## Hasil
+
+Model menggunakan RandomForestClassifier dengan akurasi 0.953 pada data uji
+yang merupakan akurasi tertinggi dibandingkan algoritma lainnya seperti 
+KNeighborsClassifier, SVC, DecisionTreeClassifier, AdaBoostClassifier,
+GradientBoostingClassifier, dan SGDClassifier.  
+
+Proyek capstone, tidak dirilis ke publik.

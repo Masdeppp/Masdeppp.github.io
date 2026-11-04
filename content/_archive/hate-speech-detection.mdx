@@ -1,0 +1,125 @@
+---
+slug: hate-speech-detection
+title: Deteksi Ujaran Kebencian Multi-Label
+tagline: Klasifikasi 12 label sekaligus pada 13.169 tweet berbahasa Indonesia.
+featured: true
+order: 1
+status: wip
+period:
+  start: 2026-04
+  end: TODO
+role: TODO — solo atau tim?
+team: TODO
+domain:
+  - ml
+  - nlp
+stack:
+  - Python
+  - pandas
+  - TODO — library model yang dipakai
+metrics:
+  - label: Ukuran dataset
+    value: "13.169"
+    note: tweet berbahasa Indonesia
+  - label: Jumlah label
+    value: "12"
+    note: multi-label, bukan multi-kelas
+  - label: Skor
+    value: TODO
+    note: TODO — F1 macro/micro, atau Hamming loss
+links:
+  repo: TODO
+  demo: ""
+cover: /images/work/hate-speech-detection/cover.png
+---
+
+> **Catatan: proyek ini kususun dari notebook `Untitled7.ipynb` di Drive-mu.**
+> Aku hanya bisa membaca struktur data dan langkah awalnya, jadi bagian model dan
+> hasil masih kosong. Tapi kerangkanya sudah ada — ini proyek yang sayang sekali
+> tidak muncul di CV-mu.
+
+## Konteks
+
+TODO — ini tugas mata kuliah, riset skripsi, atau inisiatif sendiri? Kapan dimulai,
+dan apakah masih berjalan?
+
+## Masalah
+
+Deteksi ujaran kebencian pada teks berbahasa Indonesia jauh lebih sulit daripada
+Bahasa Inggris, dan alasannya layak dijelaskan dengan lugas:
+
+- Bahasa gaul, singkatan, dan campur kode yang berubah cepat
+- Sindiran dan ironi yang bergantung pada konteks politik atau lokal
+- Istilah yang bisa menghina atau tidak, tergantung siapa yang memakainya kepada siapa
+- Sumber daya NLP Bahasa Indonesia jauh lebih terbatas daripada Bahasa Inggris
+
+TODO — kenapa kamu mengambil masalah ini? Ada tujuan yang lebih spesifik?
+
+## Batasan
+
+TODO:
+
+- Dari mana datasetnya? (Kalau dataset publik seperti milik Ibrohim & Budi, sebutkan
+  sumbernya — itu praktik yang benar, bukan kelemahan)
+- Seberapa timpang distribusi labelnya? Ini biasanya masalah terbesar di tugas seperti ini
+- Ada batasan komputasi? Colab gratis punya batas GPU yang nyata
+
+## Pendekatan
+
+Ini masalah **klasifikasi multi-label** — satu tweet bisa membawa beberapa label
+sekaligus, dan label-labelnya tersusun dalam tiga tingkat:
+
+1. **Deteksi dasar** — `HS` (ujaran kebencian), `Abusive` (kasar)
+2. **Sasaran** — `HS_Individual`, `HS_Group`, `HS_Religion`, `HS_Race`, `HS_Physical`,
+   `HS_Gender`, `HS_Other`
+3. **Intensitas** — `HS_Weak`, `HS_Moderate`, `HS_Strong`
+
+Struktur bertingkat ini penting dan layak ditonjolkan: label-labelnya tidak independen.
+Sebuah tweet tidak mungkin punya `HS_Strong` tanpa `HS`. Apakah kamu memanfaatkan
+struktur ini, atau memperlakukan semua label sebagai 12 masalah biner terpisah?
+**Itu keputusan arsitektur yang nyata, dan pantas ditulis.**
+
+TODO — dari notebook, kamu membangun `node_id` dan representasi node. Apakah kamu memakai
+pendekatan berbasis graf? Kalau ya, ceritakan — itu jauh di atas pendekatan biasa untuk
+masalah ini, dan justru itu yang membuat proyek ini menonjol.
+
+## Keputusan Teknis & Trade-off
+
+TODO — beberapa yang layak dibedah:
+
+**Multi-label vs 12 klasifikator biner terpisah.** Apa yang kamu pilih, dan apa
+konsekuensinya terhadap konsistensi prediksi?
+
+**Bagaimana ketimpangan label ditangani?** `HS_Physical` dan `HS_Gender` kemungkinan
+sangat jarang muncul dibanding `HS`. Class weighting, resampling, atau dibiarkan?
+
+**Metrik apa yang dipakai, dan kenapa?** Accuracy hampir selalu menyesatkan pada
+multi-label yang timpang. Kalau kamu memakai F1 macro atau Hamming loss, jelaskan
+alasannya — pemilihan metrik yang tepat adalah sinyal kematangan yang kuat.
+
+**Preprocessing untuk Bahasa Indonesia.** Token `USER` dan `RT` jelas sudah dinormalisasi.
+Bagaimana dengan slang, kata berulang ("bangetttt"), dan emoji?
+
+## Hasil
+
+TODO
+
+## Yang Akan Saya Ubah
+
+TODO — dan kalau proyek ini masih berjalan, tulis saja bagian ini sebagai
+"Yang sedang saya kerjakan berikutnya". Untuk proyek berstatus `wip`, itu lebih jujur
+dan sama kuatnya.
+
+---
+
+## Catatan Etis
+
+TODO — pertimbangkan menambahkan satu paragraf pendek soal ini.
+
+Sistem deteksi ujaran kebencian punya konsekuensi nyata: false positive membungkam
+orang yang tidak bersalah, false negative membiarkan pelecehan berlalu. Model yang
+dilatih pada data tweet berlabel manusia juga mewarisi bias pelabelnya.
+
+Mengakui hal ini secara singkat dan tenang menempatkanmu di kelompok yang berbeda —
+kelompok yang memikirkan dampak sistemnya, bukan cuma skornya. Untuk perusahaan yang
+serius soal responsible AI, ini justru bagian yang paling mereka cari.

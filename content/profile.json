@@ -1,0 +1,48 @@
+{
+  "name": "Deva Athaya Aryaputra",
+  "headline": "Machine Learning Engineer & Web Developer",
+  "tagline": "Saya seorang Backend Engineer dengan spesialisasi Machine Learning.",
+  "location": {
+    "city": "Surakarta",
+    "region": "Jawa Tengah",
+    "country": "Indonesia",
+    "timezone": "Asia/Jakarta"
+  },
+  "availability": {
+    "status": "open",
+    "note": "Sedang menyelesaikan skripsi. Terbuka untuk peran magang, kontrak, atau full-time mulai TODO — sebutkan bulan."
+  },
+  "seeking": "TODO — jenis peran yang kamu incar. Contoh: 'Peran ML engineering di tim produk, atau full-stack yang menaruh model di jalur kritis.'",
+  "avatar": "",
+  "bio": {
+    "short": "Machine Learning Engineer dan web developer dari Surakarta. Alumni Bangkit Academy jalur Machine Learning, dengan pengalaman membangun sistem NLP dan aplikasi web berbasis Laravel.",
+    "long": "TODO — GANTI TOTAL. Lihat catatan di REVIEW.md. Bio di CV-mu saat ini ditulis dengan bahasa yang ragu-ragu ('indicating', 'suggesting exposure', 'likely includes') dan justru melemahkan posisimu."
+  },
+  "languages": [
+    {
+      "name": "Bahasa Indonesia",
+      "level": "native"
+    },
+    {
+      "name": "English",
+      "level": "limited working"
+    }
+  ],
+  "links": {
+    "email": "devathaya2016@gmail.com",
+    "phone": "+6281223222163",
+    "github": "https://github.com/Masdeppp",
+    "linkedin": "https://www.linkedin.com/in/deva-athaya",
+    "kaggle": "",
+    "huggingface": "",
+    "website": ""
+  },
+  "education": {
+    "institution": "Universitas Sebelas Maret",
+    "degree": "Sarjana (S1) Informatika",
+    "focus": "Artificial Intelligence & Machine Learning",
+    "startYear": 2022,
+    "endYear": 2026,
+    "status": "ongoing"
+  }
+}
