@@ -1,31 +1,17 @@
-# Web CV — Deva Athaya Aryaputra
+# Deva Athaya Aryaputra
 
-Portfolio pribadi. Next.js 15 (App Router) + TypeScript + Tailwind v4.
+Machine Learning Engineer & Web Developer dari Surakarta, Indonesia.
 
-## Menjalankan
+🌐 **[masdeppp.github.io](https://masdeppp.github.io)**
 
-```bash
-npm install
-npm run dev
-```
+Ini adalah web portofolio pribadi saya. Di dalamnya ada:
 
-## Struktur
+- **Work** — proyek-proyek yang pernah saya kerjakan, dari sistem NLP sampai aplikasi web
+- **Journey** — perjalanan pendidikan dan pengalaman saya
+- **Achievements** — sertifikat dan pencapaian
 
-```
-content/          Semua konten. Edit di sini, bukan di komponen.
-src/lib/schema.ts Skema Zod — build gagal kalau konten tidak valid.
-src/lib/content.ts Content layer. SATU-SATUNYA pintu antara data dan UI.
-src/app/tokens.css Design token. Tidak ada warna/ukuran mentah di komponen.
-```
+## Kontak
 
-## Aturan yang dijaga
-
-1. Komponen tidak pernah membaca file JSON langsung — selalu lewat `lib/content.ts`.
-2. Komponen tidak pernah menulis nilai warna atau ukuran mentah — selalu lewat token.
-3. Konten yang tidak lolos skema membuat build gagal, bukan membuat web rusak diam-diam.
-
-## Menambah konten
-
-- Proyek baru: buat `content/work/<slug>.mdx`, salin dari `_TEMPLATE.mdx`
-- Pencapaian: tambahkan ke `content/achievements.json`
-- Sedang dikerjakan: perbarui `content/now.json` (maksimal 4 item)
+- LinkedIn: [deva-athaya](https://www.linkedin.com/in/deva-athaya)
+- GitHub: [Masdeppp](https://github.com/Masdeppp)
+- Email: devathaya2016@gmail.com
